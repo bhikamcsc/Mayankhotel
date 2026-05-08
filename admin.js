@@ -18,7 +18,7 @@ const ADMIN_PASSWORD = "mayank@2026";
 /* =========================
 LOGIN FUNCTION
 ========================= */
-
+document.getElementById("loginBtn").addEventListener("click", loginAdmin);
 window.loginAdmin = function(){
 
   const pass =
@@ -40,6 +40,7 @@ window.loginAdmin = function(){
   }
 
 };
+document.getElementById("loginBtn").addEventListener("click", window.loginAdmin);
 
 /* =========================
 LOGOUT FUNCTION
