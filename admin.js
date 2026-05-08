@@ -6,10 +6,7 @@ const ADMIN_PASSWORD = "mayank@123";
 
 window.loginAdmin = function(){
   const pass = document.getElementById("adminPass").value;
-  if(pass === ADMIN_PASSWORD){
-    localStorage.setItem("mayankAdminLogin", "yes");
-    showPanel();
-  }else{
+    }else{
     alert("Wrong password");
   }
 };
@@ -25,7 +22,7 @@ function showPanel(){
   loadDashboard();
 }
 
-if(localStorage.getItem("mayankAdminLogin") === "yes"){
+if(sessionStorage.getItem("mayankAdminLogin") === "yes"){
   showPanel();
 }
 
