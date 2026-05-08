@@ -12,6 +12,14 @@ section{padding:100px 8%}.section-title{text-align:center;margin-bottom:45px}.se
 .form-box{max-width:720px;margin:auto;background:rgba(255,255,255,.055);padding:36px;border-radius:28px;backdrop-filter:blur(15px);border:1px solid rgba(255,215,0,.18)}
 input,textarea,select{width:100%;padding:16px;margin:11px 0;border:none;outline:none;border-radius:14px;font-size:16px;font-family:Poppins;background:#fff;color:#111}textarea{min-height:110px}
 button{width:100%;padding:17px;border:none;border-radius:14px;background:linear-gradient(135deg,#FFD700,#FF8C00);font-size:17px;font-weight:800;cursor:pointer}
-.payment{text-align:center}.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;font-weight:800;text-decoration:none;z-index:999;box-shadow:0 10px 25px rgba(0,0,0,.3)}
+.payment{text-align:center}
+.qr{
+width:320px;
+max-width:90%;
+border-radius:25px;
+border:8px solid white;
+margin-top:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.4);
+}.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;font-weight:800;text-decoration:none;z-index:999;box-shadow:0 10px 25px rgba(0,0,0,.3)}
 footer{padding:30px;text-align:center;background:black;color:#aaa}@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:900px){.hero h1{font-size:44px}.menu{font-size:13px;gap:10px}nav{padding:14px 5%;align-items:flex-start;flex-direction:column}.hero{padding-top:120px}section{padding:75px 5%}.section-title h2{font-size:36px}}
