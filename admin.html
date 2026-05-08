@@ -1,80 +1,44 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel | Mayank Restorent</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
   <div class="logo">Admin Panel</div>
-  <div class="menu">
-    <a href="index.html">Website</a>
-  </div>
+  <div class="menu"><a href="index.html">Website</a></div>
 </nav>
 
 <div class="admin-wrap">
-
   <div id="loginBox" class="admin-login">
     <h2>Admin Login</h2>
-
-    <input
-      type="password"
-      id="adminPass"
-      placeholder="Enter Admin Password"
-    >
-
-    <button id="loginBtn">
-      Login
-    </button>
+    <input type="password" id="adminPass" placeholder="Enter Admin Password">
+    <button id="loginBtn" type="button">Login</button>
   </div>
 
   <div id="adminPanel" class="admin-panel" style="display:none">
     <h1>Mayank Restorent Dashboard</h1>
-
-    <button class="small-btn danger" onclick="logoutAdmin()">
-      Logout
-    </button>
+    <button class="small-btn danger" id="logoutBtn" type="button">Logout</button>
 
     <div class="summary">
-      <div class="summary-card">
-        <h3>Total Bookings</h3>
-        <b id="totalBookings">0</b>
-      </div>
-
-      <div class="summary-card">
-        <h3>Total Orders</h3>
-        <b id="totalOrders">0</b>
-      </div>
-
-      <div class="summary-card">
-        <h3>Total Amount</h3>
-        <b id="totalAmount">₹0</b>
-      </div>
-
-      <div class="summary-card">
-        <h3>Pending Payment</h3>
-        <b id="pendingPayments">0</b>
-      </div>
+      <div class="summary-card"><h3>Total Bookings</h3><b id="totalBookings">0</b></div>
+      <div class="summary-card"><h3>Total Orders</h3><b id="totalOrders">0</b></div>
+      <div class="summary-card"><h3>Total Amount</h3><b id="totalAmount">₹0</b></div>
+      <div class="summary-card"><h3>Pending Payment</h3><b id="pendingPayments">0</b></div>
     </div>
 
     <h2>Table Bookings</h2>
-    <div class="table-scroll">
-      <table id="bookingTable"></table>
-    </div>
+    <div class="table-scroll"><table id="bookingTable"></table></div>
 
     <h2>Online Orders</h2>
-    <div class="table-scroll">
-      <table id="orderTable"></table>
-    </div>
+    <div class="table-scroll"><table id="orderTable"></table></div>
   </div>
-
 </div>
 
-<script type="module" src="firebase-config.js"></script>
 <script type="module" src="admin.js"></script>
-
 </body>
 </html>
