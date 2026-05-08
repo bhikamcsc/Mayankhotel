@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayank Restorent | Real Booking Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="bg-glow1"></div><div class="bg-glow2"></div>
+
+<nav>
+  <div class="logo">Mayank Restorent</div>
+  <div class="menu">
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#booking">Booking</a>
+    <a href="#order">Order</a>
+    <a href="#payment">Payment</a>
+    <a href="admin.html">Admin</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Royal Premium Dining</h1>
+    <p>Real database booking, online order, amount calculation, UPI payment aur admin panel ke sath.</p>
+    <a href="#booking" class="btn">Book Table</a>
+    <a href="#order" class="btn btn2">Online Order</a>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="section-title">
+    <h2>Our Menu</h2>
+    <p>Food select karte hi amount auto calculate hoga</p>
+  </div>
+  <div class="menu-grid">
+    <div class="food-card"><h3>Paneer Butter Masala</h3><p>Royal creamy paneer special</p><span>₹180</span></div>
+    <div class="food-card"><h3>Veg Thali</h3><p>Complete family meal</p><span>₹120</span></div>
+    <div class="food-card"><h3>Pizza</h3><p>Cheesy loaded pizza</p><span>₹150</span></div>
+    <div class="food-card"><h3>Burger</h3><p>Crispy delicious burger</p><span>₹70</span></div>
+    <div class="food-card"><h3>Cold Drink</h3><p>Fresh chilled drink</p><span>₹40</span></div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="section-title">
+    <h2>Table Booking</h2>
+    <p>Booking directly Firebase database me save hogi</p>
+  </div>
+  <div class="form-box">
+    <form id="bookingForm">
+      <input type="text" id="bName" placeholder="Customer Name" required>
+      <input type="tel" id="bPhone" placeholder="Mobile Number" required>
+      <input type="date" id="bDate" required>
+      <input type="time" id="bTime" required>
+      <input type="number" id="bGuests" placeholder="Guests" min="1" required>
+      <select id="bAdvance">
+        <option value="0">No Advance Payment</option>
+        <option value="100">₹100 Advance</option>
+        <option value="200">₹200 Advance</option>
+        <option value="500">₹500 Advance</option>
+      </select>
+      <textarea id="bMessage" placeholder="Special Request"></textarea>
+      <button type="submit">Save Booking + WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section id="order">
+  <div class="section-title">
+    <h2>Online Order</h2>
+    <p>Order amount automatically calculate hoga</p>
+  </div>
+  <div class="form-box">
+    <form id="orderForm">
+      <input type="text" id="oName" placeholder="Customer Name" required>
+      <input type="tel" id="oPhone" placeholder="Mobile Number" required>
+      <select id="oItem" required>
+        <option value="">Food Item Select Kare</option>
+        <option value="Paneer Butter Masala" data-price="180">Paneer Butter Masala - ₹180</option>
+        <option value="Veg Thali" data-price="120">Veg Thali - ₹120</option>
+        <option value="Pizza" data-price="150">Pizza - ₹150</option>
+        <option value="Burger" data-price="70">Burger - ₹70</option>
+        <option value="Cold Drink" data-price="40">Cold Drink - ₹40</option>
+      </select>
+      <input type="number" id="oQty" placeholder="Quantity" min="1" value="1" required>
+      <input type="text" id="oAmount" placeholder="Total Amount" readonly>
+      <textarea id="oAddress" placeholder="Delivery Address" required></textarea>
+      <select id="oPaymentStatus">
+        <option value="Pending">Payment Pending</option>
+        <option value="Paid">Payment Paid</option>
+      </select>
+      <button type="submit">Save Order + WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section id="payment">
+  <div class="section-title">
+    <h2>UPI Payment</h2>
+    <p>UPI ID: <b>7733919000@kotakbank</b></p>
+  </div>
+  <div class="payment">
+    <p>Payment screenshot WhatsApp par bheje.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-title">
+    <h2>Contact</h2>
+    <p>📍 11 Meena Basti Baragaon Sarmathura Dholpur Raj.-328026</p>
+    <p>📞 9950221161 | 📧 bhikam.csc@gmail.com | ⏰ 24 Hour Open</p>
+  </div>
+</section>
+
+<footer>© 2026 Mayank Restorent | Real Firebase Booking System</footer>
+<a class="whatsapp" href="https://wa.me/919950221161" target="_blank">WhatsApp</a>
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

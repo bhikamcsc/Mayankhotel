@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | Mayank Restorent</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .admin-wrap{padding:120px 5% 60px}
+    .admin-login,.admin-panel{max-width:1200px;margin:auto}
+    .admin-login{max-width:430px;background:rgba(255,255,255,.06);padding:28px;border-radius:24px;border:1px solid rgba(255,215,0,.2)}
+    .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin:25px 0}
+    .summary-card{background:#15100b;border:1px solid rgba(255,215,0,.2);border-radius:20px;padding:20px}
+    .summary-card h3{color:#FFD700}.summary-card b{font-size:28px}
+    table{width:100%;border-collapse:collapse;background:#15100b;margin:20px 0;border-radius:18px;overflow:hidden}
+    th,td{border:1px solid rgba(255,215,0,.18);padding:12px;text-align:left;font-size:14px}
+    th{background:linear-gradient(135deg,#FFD700,#FF8C00);color:#111}
+    .small-btn{width:auto;padding:8px 12px;border-radius:10px;margin:3px;font-size:13px}
+    .danger{background:#d11;color:#fff}.ok{background:#16a34a;color:#fff}.pending{background:#ca8a04;color:#111}
+    .table-scroll{overflow:auto}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="logo">Admin Panel</div>
+  <div class="menu"><a href="index.html">Website</a></div>
+</nav>
+
+<div class="admin-wrap">
+  <div id="loginBox" class="admin-login">
+    <h2>Admin Login</h2>
+    <p>Default Password: <b>12345</b></p>
+    <input type="password" id="adminPass" placeholder="Admin Password">
+    <button onclick="loginAdmin()">Login</button>
+  </div>
+
+  <div id="adminPanel" class="admin-panel" style="display:none">
+    <h1>Mayank Restorent Dashboard</h1>
+    <button class="small-btn danger" onclick="logoutAdmin()">Logout</button>
+
+    <div class="summary">
+      <div class="summary-card"><h3>Total Bookings</h3><b id="totalBookings">0</b></div>
+      <div class="summary-card"><h3>Total Orders</h3><b id="totalOrders">0</b></div>
+      <div class="summary-card"><h3>Total Amount</h3><b id="totalAmount">₹0</b></div>
+      <div class="summary-card"><h3>Pending Payment</h3><b id="pendingPayments">0</b></div>
+    </div>
+
+    <h2>Table Bookings</h2>
+    <div class="table-scroll"><table id="bookingTable"></table></div>
+
+    <h2>Online Orders</h2>
+    <div class="table-scroll"><table id="orderTable"></table></div>
+  </div>
+</div>
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="admin.js"></script>
+</body>
+</html>

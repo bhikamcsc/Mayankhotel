@@ -1,0 +1,23 @@
+Firebase Firestore Rules
+
+Firebase Console > Firestore Database > Rules me ye paste kare:
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /bookings/{docId} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    match /orders/{docId} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+  }
+}
+
+NOTE:
+Ye demo rules hain. Isse admin panel kaam karega, lekin public website ke liye secure rules baad me lagane chahiye.
