@@ -1,44 +1,66 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel | Mayank Restorent</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin Login Test</title>
 </head>
-<body>
 
-<nav>
-  <div class="logo">Admin Panel</div>
-  <div class="menu"><a href="index.html">Website</a></div>
-</nav>
+<body style="font-family:Arial;background:#111;color:white;text-align:center;padding-top:100px;">
 
-<div class="admin-wrap">
-  <div id="loginBox" class="admin-login">
-    <h2>Admin Login</h2>
-    <input type="password" id="adminPass" placeholder="Enter Admin Password">
-    <button id="loginBtn" type="button">Login</button>
+  <h1>Mayank Restorent Admin</h1>
+
+  <input
+    id="pass"
+    type="password"
+    placeholder="Password"
+    style="padding:15px;font-size:18px;"
+  >
+
+  <br><br>
+
+  <button
+    onclick="login()"
+    style="padding:15px 40px;font-size:18px;"
+  >
+    Login
+  </button>
+
+  <div
+    id="panel"
+    style="display:none;margin-top:40px;"
+  >
+
+    <h2>✅ Login Success</h2>
+
+    <p>
+      Admin Panel Open Ho Gaya
+    </p>
+
   </div>
 
-  <div id="adminPanel" class="admin-panel" style="display:none">
-    <h1>Mayank Restorent Dashboard</h1>
-    <button class="small-btn danger" id="logoutBtn" type="button">Logout</button>
+  <script>
 
-    <div class="summary">
-      <div class="summary-card"><h3>Total Bookings</h3><b id="totalBookings">0</b></div>
-      <div class="summary-card"><h3>Total Orders</h3><b id="totalOrders">0</b></div>
-      <div class="summary-card"><h3>Total Amount</h3><b id="totalAmount">₹0</b></div>
-      <div class="summary-card"><h3>Pending Payment</h3><b id="pendingPayments">0</b></div>
-    </div>
+    function login(){
 
-    <h2>Table Bookings</h2>
-    <div class="table-scroll"><table id="bookingTable"></table></div>
+      var password =
+      document.getElementById("pass").value;
 
-    <h2>Online Orders</h2>
-    <div class="table-scroll"><table id="orderTable"></table></div>
-  </div>
-</div>
+      if(password === "12345"){
 
-<script type="module" src="admin.js"></script>
+        document.getElementById(
+          "panel"
+        ).style.display = "block";
+
+        alert("Login Success");
+
+      }else{
+
+        alert("Wrong Password");
+
+      }
+
+    }
+
+  </script>
+
 </body>
 </html>
