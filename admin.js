@@ -2,7 +2,7 @@ import {
   db, collection, getDocs, updateDoc, deleteDoc, doc, query, orderBy
 } from "./firebase-config.js";
 
-const ADMIN_PASSWORD = "12345";
+const ADMIN_PASSWORD = "mayank@123";
 
 window.loginAdmin = function(){
   const pass = document.getElementById("adminPass").value;
