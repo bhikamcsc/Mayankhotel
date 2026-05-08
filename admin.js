@@ -1,138 +1,358 @@
 import {
-  db, collection, getDocs, updateDoc, deleteDoc, doc, query, orderBy
+  db,
+  collection,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query,
+  orderBy
 } from "./firebase-config.js";
 
-const ADMIN_PASSWORD = "mayank@123";
+/* =========================
+ADMIN PASSWORD
+========================= */
+
+const ADMIN_PASSWORD = "mayank@2026";
+
+/* =========================
+LOGIN FUNCTION
+========================= */
 
 window.loginAdmin = function(){
-  const pass = document.getElementById("adminPass").value;
-    }else{
-    alert("Wrong password");
+
+  const pass =
+  document.getElementById("adminPass").value;
+
+  if(pass === ADMIN_PASSWORD){
+
+    sessionStorage.setItem(
+      "mayankAdminLogin",
+      "yes"
+    );
+
+    showPanel();
+
+  }else{
+
+    alert("Wrong Password");
+
   }
+
 };
+
+/* =========================
+LOGOUT FUNCTION
+========================= */
 
 window.logoutAdmin = function(){
-  localStorage.removeItem("mayankAdminLogin");
+
+  sessionStorage.removeItem(
+    "mayankAdminLogin"
+  );
+
   location.reload();
+
 };
 
+/* =========================
+SHOW PANEL
+========================= */
+
 function showPanel(){
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("adminPanel").style.display = "block";
+
+  document.getElementById(
+    "loginBox"
+  ).style.display = "none";
+
+  document.getElementById(
+    "adminPanel"
+  ).style.display = "block";
+
   loadDashboard();
+
 }
 
-if(sessionStorage.getItem("mayankAdminLogin") === "yes"){
+/* =========================
+CHECK LOGIN
+========================= */
+
+if(
+  sessionStorage.getItem(
+    "mayankAdminLogin"
+  ) === "yes"
+){
   showPanel();
 }
 
+/* =========================
+LOAD DASHBOARD
+========================= */
+
 async function loadDashboard(){
-  const bookingSnap = await getDocs(query(collection(db, "bookings"), orderBy("createdAt", "desc")));
-  const orderSnap = await getDocs(query(collection(db, "orders"), orderBy("createdAt", "desc")));
+
+  const bookingSnap =
+  await getDocs(
+    query(
+      collection(db,"bookings"),
+      orderBy("createdAt","desc")
+    )
+  );
+
+  const orderSnap =
+  await getDocs(
+    query(
+      collection(db,"orders"),
+      orderBy("createdAt","desc")
+    )
+  );
 
   const bookings = [];
   const orders = [];
 
-  bookingSnap.forEach(d => bookings.push({ id: d.id, ...d.data() }));
-  orderSnap.forEach(d => orders.push({ id: d.id, ...d.data() }));
+  bookingSnap.forEach(docu=>{
+    bookings.push({
+      id:docu.id,
+      ...docu.data()
+    });
+  });
 
-  document.getElementById("totalBookings").innerText = bookings.length;
-  document.getElementById("totalOrders").innerText = orders.length;
+  orderSnap.forEach(docu=>{
+    orders.push({
+      id:docu.id,
+      ...docu.data()
+    });
+  });
 
-  const totalAmount = orders.reduce((sum, o) => sum + Number(o.amount || 0), 0)
-    + bookings.reduce((sum, b) => sum + Number(b.advanceAmount || 0), 0);
+  /* TOTALS */
 
-  document.getElementById("totalAmount").innerText = "₹" + totalAmount;
+  document.getElementById(
+    "totalBookings"
+  ).innerText = bookings.length;
 
-  const pendingCount = orders.filter(o => o.paymentStatus !== "Paid").length
-    + bookings.filter(b => b.paymentStatus === "Advance Pending").length;
+  document.getElementById(
+    "totalOrders"
+  ).innerText = orders.length;
 
-  document.getElementById("pendingPayments").innerText = pendingCount;
+  let totalAmount = 0;
+
+  orders.forEach(o=>{
+    totalAmount += Number(o.amount || 0);
+  });
+
+  bookings.forEach(b=>{
+    totalAmount += Number(
+      b.advanceAmount || 0
+    );
+  });
+
+  document.getElementById(
+    "totalAmount"
+  ).innerText = "₹" + totalAmount;
+
+  /* PENDING */
+
+  const pending =
+  orders.filter(
+    o=>o.paymentStatus !== "Paid"
+  ).length;
+
+  document.getElementById(
+    "pendingPayments"
+  ).innerText = pending;
 
   renderBookings(bookings);
   renderOrders(orders);
+
 }
+
+/* =========================
+BOOKINGS TABLE
+========================= */
 
 function renderBookings(bookings){
-  const table = document.getElementById("bookingTable");
+
+  const table =
+  document.getElementById(
+    "bookingTable"
+  );
+
   table.innerHTML = `
-    <tr>
-      <th>Name</th><th>Phone</th><th>Date</th><th>Time</th><th>Guests</th>
-      <th>Advance</th><th>Payment</th><th>Status</th><th>Action</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Date</th>
+    <th>Guests</th>
+    <th>Advance</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
   `;
 
-  bookings.forEach(b => {
+  bookings.forEach(b=>{
+
     table.innerHTML += `
-      <tr>
-        <td>${b.name || ""}</td>
-        <td>${b.phone || ""}</td>
-        <td>${b.date || ""}</td>
-        <td>${b.time || ""}</td>
-        <td>${b.guests || ""}</td>
-        <td>₹${b.advanceAmount || 0}</td>
-        <td>${b.paymentStatus || ""}</td>
-        <td>${b.status || ""}</td>
-        <td>
-          <button class="small-btn ok" onclick="updateBooking('${b.id}','Confirmed','Paid')">Confirm</button>
-          <button class="small-btn pending" onclick="updateBooking('${b.id}','Pending','Advance Pending')">Pending</button>
-          <button class="small-btn danger" onclick="deleteBooking('${b.id}')">Delete</button>
-        </td>
-      </tr>
+    <tr>
+      <td>${b.name || ""}</td>
+      <td>${b.phone || ""}</td>
+      <td>${b.date || ""}</td>
+      <td>${b.guests || ""}</td>
+      <td>₹${b.advanceAmount || 0}</td>
+      <td>${b.status || "New"}</td>
+
+      <td>
+
+        <button
+        class="small-btn ok"
+        onclick="confirmBooking('${b.id}')">
+        Confirm
+        </button>
+
+        <button
+        class="small-btn danger"
+        onclick="deleteBooking('${b.id}')">
+        Delete
+        </button>
+
+      </td>
+
+    </tr>
     `;
+
   });
+
 }
+
+/* =========================
+ORDERS TABLE
+========================= */
 
 function renderOrders(orders){
-  const table = document.getElementById("orderTable");
+
+  const table =
+  document.getElementById(
+    "orderTable"
+  );
+
   table.innerHTML = `
-    <tr>
-      <th>Name</th><th>Phone</th><th>Item</th><th>Qty</th><th>Amount</th>
-      <th>Payment</th><th>Order Status</th><th>Address</th><th>Action</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Item</th>
+    <th>Qty</th>
+    <th>Amount</th>
+    <th>Payment</th>
+    <th>Action</th>
+  </tr>
   `;
 
-  orders.forEach(o => {
+  orders.forEach(o=>{
+
     table.innerHTML += `
-      <tr>
-        <td>${o.name || ""}</td>
-        <td>${o.phone || ""}</td>
-        <td>${o.item || ""}</td>
-        <td>${o.qty || ""}</td>
-        <td>₹${o.amount || 0}</td>
-        <td>${o.paymentStatus || ""}</td>
-        <td>${o.orderStatus || ""}</td>
-        <td>${o.address || ""}</td>
-        <td>
-          <button class="small-btn ok" onclick="updateOrder('${o.id}','Completed','Paid')">Complete</button>
-          <button class="small-btn pending" onclick="updateOrder('${o.id}','Preparing','Pending')">Preparing</button>
-          <button class="small-btn danger" onclick="deleteOrder('${o.id}')">Delete</button>
-        </td>
-      </tr>
+    <tr>
+
+      <td>${o.name || ""}</td>
+
+      <td>${o.item || ""}</td>
+
+      <td>${o.qty || ""}</td>
+
+      <td>₹${o.amount || 0}</td>
+
+      <td>${o.paymentStatus || ""}</td>
+
+      <td>
+
+        <button
+        class="small-btn ok"
+        onclick="completeOrder('${o.id}')">
+        Complete
+        </button>
+
+        <button
+        class="small-btn danger"
+        onclick="deleteOrder('${o.id}')">
+        Delete
+        </button>
+
+      </td>
+
+    </tr>
     `;
+
   });
+
 }
 
-window.updateBooking = async function(id, status, paymentStatus){
-  await updateDoc(doc(db, "bookings", id), { status, paymentStatus });
+/* =========================
+UPDATE BOOKING
+========================= */
+
+window.confirmBooking =
+async function(id){
+
+  await updateDoc(
+    doc(db,"bookings",id),
+    {
+      status:"Confirmed"
+    }
+  );
+
   loadDashboard();
+
 };
 
-window.updateOrder = async function(id, orderStatus, paymentStatus){
-  await updateDoc(doc(db, "orders", id), { orderStatus, paymentStatus });
+/* =========================
+COMPLETE ORDER
+========================= */
+
+window.completeOrder =
+async function(id){
+
+  await updateDoc(
+    doc(db,"orders",id),
+    {
+      paymentStatus:"Paid"
+    }
+  );
+
   loadDashboard();
+
 };
 
-window.deleteBooking = async function(id){
-  if(confirm("Booking delete karni hai?")){
-    await deleteDoc(doc(db, "bookings", id));
+/* =========================
+DELETE BOOKING
+========================= */
+
+window.deleteBooking =
+async function(id){
+
+  if(confirm("Delete Booking?")){
+
+    await deleteDoc(
+      doc(db,"bookings",id)
+    );
+
     loadDashboard();
+
   }
+
 };
 
-window.deleteOrder = async function(id){
-  if(confirm("Order delete karna hai?")){
-    await deleteDoc(doc(db, "orders", id));
+/* =========================
+DELETE ORDER
+========================= */
+
+window.deleteOrder =
+async function(id){
+
+  if(confirm("Delete Order?")){
+
+    await deleteDoc(
+      doc(db,"orders",id)
+    );
+
     loadDashboard();
+
   }
+
 };
