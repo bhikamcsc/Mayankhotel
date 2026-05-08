@@ -1,0 +1,692 @@
+<!-- =========================
+MAYANK RESTORENT PREMIUM WEBSITE
+GitHub Pages Ready Full Code
+Save as: index.html
+========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mayank Restorent | Premium Royal Restaurant</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+GLOBAL
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#080604;
+color:white;
+overflow-x:hidden;
+}
+
+/* =========================
+PREMIUM BACKGROUND GLOW
+========================= */
+
+.bg-glow1,
+.bg-glow2{
+position:fixed;
+width:400px;
+height:400px;
+border-radius:50%;
+filter:blur(90px);
+z-index:-1;
+}
+
+.bg-glow1{
+background:rgba(255,215,0,0.15);
+top:-100px;
+left:-100px;
+}
+
+.bg-glow2{
+background:rgba(255,140,0,0.15);
+bottom:-100px;
+right:-100px;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(12px);
+z-index:1000;
+border-bottom:1px solid rgba(255,215,0,0.2);
+}
+
+.logo{
+font-size:30px;
+font-weight:800;
+color:#FFD700;
+font-family:'Playfair Display',serif;
+}
+
+.menu{
+display:flex;
+gap:25px;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
+
+.menu a:hover{
+color:#FFD700;
+}
+
+/* =========================
+HERO SECTION
+========================= */
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1600&auto=format&fit=crop')
+center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content{
+max-width:900px;
+animation:fadeUp 1.5s ease;
+}
+
+.hero h1{
+font-size:75px;
+font-family:'Playfair Display',serif;
+color:#FFD700;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+line-height:1.8;
+margin-bottom:30px;
+color:#eee;
+}
+
+.btn{
+display:inline-block;
+padding:16px 35px;
+border-radius:50px;
+background:linear-gradient(135deg,#FFD700,#FF8C00);
+color:black;
+font-weight:700;
+text-decoration:none;
+transition:0.4s;
+box-shadow:0 10px 25px rgba(255,215,0,0.25);
+}
+
+.btn:hover{
+transform:translateY(-5px) scale(1.03);
+}
+
+/* =========================
+SECTION
+========================= */
+
+section{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:50px;
+font-family:'Playfair Display',serif;
+color:#FFD700;
+margin-bottom:15px;
+}
+
+.section-title p{
+color:#ccc;
+}
+
+/* =========================
+ABOUT
+========================= */
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+
+.about-text h3{
+font-size:40px;
+margin-bottom:20px;
+color:#FFD700;
+}
+
+.about-text p{
+line-height:1.9;
+color:#ddd;
+}
+
+/* =========================
+MENU
+========================= */
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+}
+
+.food-card{
+background:linear-gradient(180deg,#1b120a,#0e0905);
+padding:30px;
+border-radius:25px;
+border:1px solid rgba(255,215,0,0.15);
+transition:0.4s;
+text-align:center;
+}
+
+.food-card:hover{
+transform:translateY(-10px);
+border-color:#FFD700;
+}
+
+.food-card h3{
+font-size:24px;
+margin:20px 0 10px;
+color:#FFD700;
+}
+
+.food-card p{
+color:#ccc;
+margin-bottom:15px;
+}
+
+.food-card span{
+font-size:22px;
+font-weight:800;
+}
+
+/* =========================
+BOOKING FORM
+========================= */
+
+.form-box{
+max-width:700px;
+margin:auto;
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:30px;
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,215,0,0.15);
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:16px;
+margin:12px 0;
+border:none;
+outline:none;
+border-radius:15px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+background:linear-gradient(135deg,#FFD700,#FF8C00);
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:0.4s;
+}
+
+button:hover{
+transform:scale(1.02);
+}
+
+/* =========================
+PAYMENT
+========================= */
+
+.payment{
+text-align:center;
+}
+
+.payment img{
+width:320px;
+max-width:90%;
+border-radius:25px;
+border:8px solid white;
+margin-top:25px;
+}
+
+/* =========================
+CONTACT
+========================= */
+
+.contact-box{
+text-align:center;
+line-height:2;
+font-size:18px;
+color:#ddd;
+}
+
+/* =========================
+WHATSAPP BUTTON
+========================= */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 20px;
+border-radius:50px;
+font-weight:700;
+text-decoration:none;
+z-index:999;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+padding:30px;
+text-align:center;
+background:black;
+color:#999;
+}
+
+/* =========================
+ANIMATION
+========================= */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:48px;
+}
+
+.about{
+grid-template-columns:1fr;
+}
+
+.menu{
+display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-glow1"></div>
+<div class="bg-glow2"></div>
+
+<!-- =========================
+NAVBAR
+========================= -->
+
+<nav>
+
+<div class="logo">
+Mayank Restorent
+</div>
+
+<div class="menu">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#menu">Menu</a>
+<a href="#booking">Booking</a>
+<a href="#payment">Payment</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
+
+<!-- =========================
+HERO
+========================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>Royal Premium Dining</h1>
+
+<p>
+Experience luxury food, family dining, online booking,
+home delivery and premium restaurant atmosphere
+at Mayank Restorent.
+</p>
+
+<a href="#booking" class="btn">
+Book Table
+</a>
+
+</div>
+
+</section>
+
+<!-- =========================
+ABOUT
+========================= -->
+
+<section id="about">
+
+<div class="section-title">
+<h2>About Us</h2>
+<p>Premium Family Restaurant</p>
+</div>
+
+<div class="about">
+
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop">
+
+<div class="about-text">
+
+<h3>Mayank Restorent</h3>
+
+<p>
+Address:
+11 Meena Basti Baragaon Sarmathura Dholpur Raj.-328026
+</p>
+
+<p>
+24 Hour Open Restaurant with premium food,
+home delivery, online order and luxury environment.
+</p>
+
+<p>
+Phone / WhatsApp:
+9950221161
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+MENU
+========================= -->
+
+<section id="menu">
+
+<div class="section-title">
+<h2>Our Special Menu</h2>
+<p>Delicious Premium Food</p>
+</div>
+
+<div class="menu-grid">
+
+<div class="food-card">
+<h3>Paneer Butter Masala</h3>
+<p>Royal creamy paneer special</p>
+<span>₹180</span>
+</div>
+
+<div class="food-card">
+<h3>Veg Thali</h3>
+<p>Complete family meal</p>
+<span>₹120</span>
+</div>
+
+<div class="food-card">
+<h3>Pizza</h3>
+<p>Cheesy loaded pizza</p>
+<span>₹150</span>
+</div>
+
+<div class="food-card">
+<h3>Burger</h3>
+<p>Crispy delicious burger</p>
+<span>₹70</span>
+</div>
+
+<div class="food-card">
+<h3>Cold Drink</h3>
+<p>Fresh chilled drink</p>
+<span>₹40</span>
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+BOOKING
+========================= -->
+
+<section id="booking">
+
+<div class="section-title">
+<h2>Table Booking</h2>
+<p>Reserve Your Table</p>
+</div>
+
+<div class="form-box">
+
+<form id="bookingForm">
+
+<input type="text" id="name" placeholder="Customer Name" required>
+
+<input type="tel" id="phone" placeholder="Mobile Number" required>
+
+<input type="date" id="date" required>
+
+<input type="time" id="time" required>
+
+<input type="number" id="guests" placeholder="Guests" required>
+
+<textarea id="message" placeholder="Special Request"></textarea>
+
+<button type="submit">
+Book on WhatsApp
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- =========================
+PAYMENT
+========================= -->
+
+<section id="payment">
+
+<div class="section-title">
+<h2>UPI Payment</h2>
+<p>Scan & Pay</p>
+</div>
+
+<div class="payment">
+
+<h3>
+UPI ID:
+7733919000@kotakbank
+</h3>
+
+<img src="YOUR_QR_IMAGE_LINK_HERE">
+
+</div>
+
+</section>
+
+<!-- =========================
+CONTACT
+========================= -->
+
+<section id="contact">
+
+<div class="section-title">
+<h2>Contact Us</h2>
+<p>Visit Our Restaurant</p>
+</div>
+
+<div class="contact-box">
+
+<p>
+📍 11 Meena Basti Baragaon Sarmathura Dholpur Raj.-328026
+</p>
+
+<p>
+📞 9950221161
+</p>
+
+<p>
+📧 bhikam.csc@gmail.com
+</p>
+
+<p>
+⏰ 24 Hour Open
+</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+© 2026 Mayank Restorent | Premium Royal Website
+
+</footer>
+
+<!-- =========================
+WHATSAPP BUTTON
+========================= -->
+
+<a class="whatsapp"
+href="https://wa.me/919950221161"
+target="_blank">
+
+WhatsApp
+
+</a>
+
+<!-- =========================
+SCRIPT
+========================= -->
+
+<script>
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name =
+document.getElementById("name").value;
+
+let phone =
+document.getElementById("phone").value;
+
+let date =
+document.getElementById("date").value;
+
+let time =
+document.getElementById("time").value;
+
+let guests =
+document.getElementById("guests").value;
+
+let message =
+document.getElementById("message").value;
+
+let whatsappMessage =
+`👑 Mayank Restorent Booking
+
+Name: ${name}
+Phone: ${phone}
+Date: ${date}
+Time: ${time}
+Guests: ${guests}
+Message: ${message}`;
+
+let url =
+"https://wa.me/919950221161?text="
++
+encodeURIComponent(whatsappMessage);
+
+window.open(url,'_blank');
+
+});
+
+</script>
+
+</body>
+</html>
